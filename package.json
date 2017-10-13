@@ -1,0 +1,14 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "strat": "node server.js"
+  },
+  "repository": "https://github.com/sagar12861/frontend-examples.git",
+  "author": "Krishna Sagar R <krishnasagar.r@sonata-software.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
