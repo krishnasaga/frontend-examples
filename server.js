@@ -4,7 +4,7 @@ var request = require("request");
 
 var app = express();
 
-app.use(express.static("docs"));
+app.use('/apps/rx-flicker',express.static("rx-flicker"));
 
 app.get("/api", function(req, res) {
   console.log(req);
