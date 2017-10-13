@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "express": "^4.16.2",
