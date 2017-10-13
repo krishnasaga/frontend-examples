@@ -1,14 +1,13 @@
 {
-  "name": "examples",
-  "version": "1.0.0",
-  "main": "server.js",
   "scripts": {
-    "strat": "node server.js"
+    "build": "webpack"
   },
-  "repository": "https://github.com/sagar12861/frontend-examples.git",
-  "author": "Krishna Sagar R <krishnasagar.r@sonata-software.com>",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "global-tunnel": "^1.2.0",
+    "http-proxy-middleware": "^0.17.4",
+    "request": "^2.83.0",
+    "rxjs": "^5.4.3",
+    "webpack": "^3.6.0"
   }
 }
