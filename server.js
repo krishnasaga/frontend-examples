@@ -2,6 +2,6 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (res,req) => { res.send({})});
+app.get('/', (req,res) => { res.send({})});
 
-app.listen(process.env.OPENSHIFT_NODEJS_PORT);
+app.listen(process.env.PORT);
