@@ -30,7 +30,7 @@ const imageLoads$ = Observable.fromEvent(input, "keyup")
     }
     imageElement.style.backgroundImage = 
     `url('http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
-    document.getElementById('title').innerText = output.title || 'Type what\'s on your mind';
+    document.getElementById('title').innerText = output.title || '';
   });
 
   imageLoads$.subscribe(data => {
