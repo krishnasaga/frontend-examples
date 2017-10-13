@@ -9,21 +9,37 @@ import "rxjs/add/observable/fromEvent";
 
 const input = document.getElementById("search");
 const outputElement = document.getElementById("output");
-const imageElement = document.getElementById("image");
+const imageElement = document.getElementById("main-image");
+const backgroundImge = document.getElementById('background-image');
 
-Observable.fromEvent(input, "keyup")
+const imageLoads$ = Observable.fromEvent(input, "keyup")
   .debounceTime(10)
   .mergeMap(event =>
     Observable.ajax({
       url: `/api?keyword=${event.target.value}`,
       responseType: "json"
     }).catch(err => (err.xhr ? Observable.of(err) : Observable.of(".___.")))
-  ) 
-  .subscribe(data => {
+  );
+
+
+  imageLoads$.subscribe(data => {
     let photos = data.response.photos;
     let output = {};
     if (photos && photos.photo && photos.photo.length > 0) {
       output = photos.photo[0];
     }
-    imageElement.src = `http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg`;
+    imageElement.style.backgroundImage = 
+    `url('http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+    document.getElementById('title').innerText = output.title || 'Type what\'s on your mind';
   });
+
+  imageLoads$.subscribe(data => {
+    let photos = data.response.photos;
+    let output = {};
+    if (photos && photos.photo && photos.photo.length > 0) {
+      output = photos.photo[0];
+    }
+    backgroundImge.style.backgroundImage = 
+    `url('http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+  });
+
