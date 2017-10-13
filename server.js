@@ -16,4 +16,4 @@ app.get("/api", function(req, res) {
   );
 });
 
-app.listen(process.NODE_ENV.port);
+app.listen(process.env.PORT);
