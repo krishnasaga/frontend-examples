@@ -40,11 +40,11 @@ const imageLoads$ = Observable.fromEvent(input, "keyup")
   });
 
 imageLoads$.subscribe(output => {
-  imageElement.style.backgroundImage = `url('http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+  imageElement.style.backgroundImage = `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
   document.getElementById("title").innerText = output.title || "";
 });
 
 imageLoads$.subscribe(output => {
-  backgroundImge.style.backgroundImage = `url('http://farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+  backgroundImge.style.backgroundImage = `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
 });
 
