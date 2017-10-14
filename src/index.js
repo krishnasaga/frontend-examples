@@ -13,15 +13,12 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/from";
 import "rxjs/add/observable/fromEvent";
 
-import Vibrant from 'node-vibrant';
-
-
 const input = document.getElementById("search");
 const outputElement = document.getElementById("output");
 const imageElement = document.getElementById("main-image");
 const backgroundImge = document.getElementById("background-image");
 
-const imageLoads$ = Observable.fromEvent(input, "keyup")
+const images$ = Observable.fromEvent(input, "keyup")
   .debounceTime(200)
   .mergeMap(event =>
     Observable.ajax({
@@ -39,12 +36,13 @@ const imageLoads$ = Observable.fromEvent(input, "keyup")
       .repeat();
   });
 
-imageLoads$.subscribe(output => {
-  imageElement.style.backgroundImage = `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+images$.subscribe(output => {
+  imageElement.style.backgroundImage = 
+  `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
   document.getElementById("title").innerText = output.title || "";
 });
 
-imageLoads$.subscribe(output => {
-  backgroundImge.style.backgroundImage = `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+images$.subscribe(output => {
+  backgroundImge.style.backgroundImage = 
+  `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
 });
-

@@ -1,8 +1,10 @@
 var express = require("express");
 var request = require("request");
-
+var compression = require('compression')
 
 var app = express();
+
+app.use(compression());
 
 app.use('/apps/rx-flicker/',express.static("rx-flicker"));
 

@@ -4,6 +4,7 @@
     "postinstall": "webpack"
   },
   "dependencies": {
+    "compression": "^1.7.1",
     "dominant-color": "^0.0.1",
     "express": "^4.16.2",
     "global-tunnel": "^1.2.0",
