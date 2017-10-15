@@ -6,7 +6,7 @@ var app = express();
 
 app.use(compression());
 
-app.use('/apps/rx-flicker/',express.static("rx-flicker"));
+app.use('/apps/rx-flicker/',express.static("apps/rx-flicker"));
 
 app.get("/api", function(req, res) {
   console.log(req);
@@ -17,5 +17,8 @@ app.get("/api", function(req, res) {
     }
   );
 });
+
+app.get('/api/sbdb',require('./apis/sbdb'));
+
 
 app.listen(process.env.PORT || 3000 );

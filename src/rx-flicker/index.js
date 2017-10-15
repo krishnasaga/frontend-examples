@@ -17,16 +17,16 @@ const input = document.getElementById("search");
 const outputElement = document.getElementById("output");
 const imageElement = document.getElementById("main-image");
 const backgroundImge = document.getElementById("background-image");
-
-const images$ = Observable.fromEvent(input, "keyup")
-  .debounceTime(200)
-  .mergeMap(event =>
+const keywords$ = Observable.fromEvent(input, "keyup");
+const imageLoads$ = keywords$.debounceTime(200)
+  .switchMap(event =>
     Observable.ajax({
       url: `/api?keyword=${event.target.value}`,
       responseType: "json"
     }).catch(err => (err.xhr ? Observable.of(err) : Observable.of(".___.")))
-  )
-  .switchMap(data => {
+  );
+
+  const images$ = imagesLoads$.switchMap(data => {
     let photos = data.response.photos;
     const photoResults =
       photos && photos.photo.length > 0 ? photos.photo : [{}];
@@ -38,11 +38,11 @@ const images$ = Observable.fromEvent(input, "keyup")
 
 images$.subscribe(output => {
   imageElement.style.backgroundImage = 
-  `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+    `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
   document.getElementById("title").innerText = output.title || "";
 });
 
 images$.subscribe(output => {
-  backgroundImge.style.backgroundImage = 
-  `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
+  backgroundImge.style.backgroundImage =
+    `url('//farm${output.farm}.static.flickr.com/${output.server}/${output.id}_${output.secret}.jpg')`;
 });
