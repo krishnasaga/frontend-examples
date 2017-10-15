@@ -18,6 +18,8 @@ const outputElement = document.getElementById("output");
 const imageElement = document.getElementById("main-image");
 const backgroundImge = document.getElementById("background-image");
 const keywords$ = Observable.fromEvent(input, "keyup");
+
+
 const imageLoads$ = keywords$.debounceTime(200)
   .switchMap(event =>
     Observable.ajax({
@@ -26,7 +28,7 @@ const imageLoads$ = keywords$.debounceTime(200)
     }).catch(err => (err.xhr ? Observable.of(err) : Observable.of(".___.")))
   );
 
-  const images$ = imagesLoads$.switchMap(data => {
+  const images$ = imageLoads$.switchMap(data => {
     let photos = data.response.photos;
     const photoResults =
       photos && photos.photo.length > 0 ? photos.photo : [{}];
